@@ -1,6 +1,6 @@
 use tauri::{
-  plugin::{Builder, TauriPlugin},
-  Manager, Runtime,
+    plugin::{Builder, TauriPlugin},
+    Manager, Runtime,
 };
 
 pub use models::*;
@@ -23,26 +23,30 @@ use mobile::Crypto;
 
 /// Extensions to [`tauri::App`], [`tauri::AppHandle`] and [`tauri::Window`] to access the crypto APIs.
 pub trait CryptoExt<R: Runtime> {
-  fn crypto(&self) -> &Crypto<R>;
+    fn crypto(&self) -> &Crypto<R>;
 }
 
 impl<R: Runtime, T: Manager<R>> crate::CryptoExt<R> for T {
-  fn crypto(&self) -> &Crypto<R> {
-    self.state::<Crypto<R>>().inner()
-  }
+    fn crypto(&self) -> &Crypto<R> {
+        self.state::<Crypto<R>>().inner()
+    }
 }
 
 /// Initializes the plugin.
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
-  Builder::new("crypto")
-    .invoke_handler(tauri::generate_handler![commands::ping])
-    .setup(|app, api| {
-      #[cfg(mobile)]
-      let crypto = mobile::init(app, api)?;
-      #[cfg(desktop)]
-      let crypto = desktop::init(app, api)?;
-      app.manage(crypto);
-      Ok(())
-    })
-    .build()
+    Builder::new("crypto")
+        .invoke_handler(tauri::generate_handler![
+            commands::generate,
+            commands::exists,
+            commands::get_public_key
+        ])
+        .setup(|app, api| {
+            #[cfg(mobile)]
+            let crypto = mobile::init(app, api)?;
+            #[cfg(desktop)]
+            let crypto = desktop::init(app, api)?;
+            app.manage(crypto);
+            Ok(())
+        })
+        .build()
 }

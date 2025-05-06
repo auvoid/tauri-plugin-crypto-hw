@@ -1,3 +1,11 @@
+"$schema" = "schemas/schema.json"
 [default]
-description = "Default permissions for the plugin"
-permissions = ["allow-ping"]
+description = """
+This permission set configures which
+crypto features are by default exposed.
+
+#### Granted Permissions
+
+It allows access to all crypto commands.
+"""
+permissions = ["allow-generate", "allow-exists", "allow-get-public-key"]

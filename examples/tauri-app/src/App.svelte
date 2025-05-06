@@ -1,6 +1,6 @@
 <script>
   import Greet from './lib/Greet.svelte'
-  import { ping } from 'tauri-plugin-crypto-api'
+  import { generate, exists, getPublicKey } from 'tauri-plugin-crypto-api'
 
 	let response = ''
 
@@ -8,12 +8,44 @@
 		response += `[${new Date().toLocaleTimeString()}] ` + (typeof returnValue === 'string' ? returnValue : JSON.stringify(returnValue)) + '<br>'
 	}
 
-	function _ping() {
-		ping("Pong!").then(updateResponse).catch(updateResponse)
-	}
+	// test functions 
+  async function _generate() {
+    generate("default").then((returnValue) => {
+      updateResponse(returnValue)
+    }).catch((error) => {
+      updateResponse(error)
+    })
+  }
+
+  async function _exists() {
+    exists("default").then((returnValue) => {
+      updateResponse(returnValue)
+    }).catch((error) => {
+      updateResponse(error)
+    })
+  }
+
+  async function _getPublicKey() {
+    getPublicKey("default").then((returnValue) => {
+      updateResponse(returnValue)
+    }).catch((error) => {
+      updateResponse(error)
+    })
+  }
 </script>
 
 <main class="container">
+
+  <button onclick={_generate}>
+    Generate Key Pair
+  </button>
+  <button onclick={_exists}>
+    Check Existence
+  </button>
+  <button onclick={_getPublicKey}>
+    Get Public Key
+  </button>
+
   <h1>Welcome to Tauri!</h1>
 
   <div class="row">
@@ -37,7 +69,7 @@
   </div>
 
   <div>
-    <button on:click="{_ping}">Ping</button>
+    <!-- <button on:click="{_ping}">Ping</button> -->
     <div>{@html response}</div>
   </div>
 

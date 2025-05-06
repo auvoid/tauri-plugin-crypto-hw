@@ -1,3 +1,3 @@
-package com.tauri.dev
+package com.tauri.cryptodev
 
 class MainActivity : TauriActivity()

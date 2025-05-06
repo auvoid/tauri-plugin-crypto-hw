@@ -15,7 +15,7 @@ pub fn init<R: Runtime, C: DeserializeOwned>(
     api: PluginApi<R, C>,
 ) -> crate::Result<Crypto<R>> {
     #[cfg(target_os = "android")]
-    let handle = api.register_android_plugin("com.plugin.crypto", "ExamplePlugin")?;
+    let handle = api.register_android_plugin("com.plugin.crypto", "CryptoPlugin")?;
     #[cfg(target_os = "ios")]
     let handle = api.register_ios_plugin(init_plugin_crypto)?;
     Ok(Crypto(handle))

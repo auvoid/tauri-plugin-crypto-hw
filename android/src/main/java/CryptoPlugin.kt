@@ -1,6 +1,7 @@
 package com.plugin.crypto
 
 import android.app.Activity
+import android.content.pm.PackageManager
 import android.os.Build
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
@@ -46,7 +47,8 @@ class CryptoPlugin(private val activity: Activity): Plugin(activity) {
 
     /** Generate EC keypair in StrongBox; fail if unavailable or exists */
     private fun generateKeyPair(alias: String) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P ||
+            !activity.packageManager.hasSystemFeature(PackageManager.FEATURE_STRONGBOX_KEYSTORE)) {
             throw Exception("StrongBox requires Android P or above")
         }
         val ks = KeyStore.getInstance("AndroidKeyStore").apply { load(null) }

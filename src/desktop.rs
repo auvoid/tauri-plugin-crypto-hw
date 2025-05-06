@@ -14,11 +14,6 @@ pub fn init<R: Runtime, C: DeserializeOwned>(
 pub struct Crypto<R: Runtime>(AppHandle<R>);
 
 impl<R: Runtime> Crypto<R> {
-    // pub fn ping(&self, payload: PingRequest) -> crate::Result<PingResponse> {
-    //     Ok(PingResponse {
-    //         value: payload.value,
-    //     })
-    // }
     pub fn generate(&self, payload: IdentifierRequest) -> crate::Result<GenerateResponse> {
         Ok(GenerateResponse {
             message: format!("Generated identifier: {}", payload.identifier),
@@ -34,7 +29,21 @@ impl<R: Runtime> Crypto<R> {
         payload: IdentifierRequest,
     ) -> crate::Result<GetPublicKeyResponse> {
         Ok(GetPublicKeyResponse {
-            public_key: payload.identifier.into_bytes(),
+            public_key: payload.identifier,
+        })
+    }
+    pub fn sign_payload(&self, payload: SignPayloadRequest) -> crate::Result<SignPayloadResponse> {
+        Ok(SignPayloadResponse {
+            signature: format!("Signature for {}: {}", payload.identifier, payload.payload),
+        })
+    }
+    pub fn verify_signature(
+        &self,
+        payload: VerifySignatureRequest,
+    ) -> crate::Result<VerifySignatureResponse> {
+        Ok(VerifySignatureResponse {
+            valid: payload.signature
+                == format!("Signature for {}: {}", payload.identifier, payload.payload),
         })
     }
 }

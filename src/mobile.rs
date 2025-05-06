@@ -48,4 +48,17 @@ impl<R: Runtime> Crypto<R> {
             .run_mobile_plugin("getPublicKey", payload)
             .map_err(Into::into)
     }
+    pub fn sign_payload(&self, payload: SignPayloadRequest) -> crate::Result<SignPayloadResponse> {
+        self.0
+            .run_mobile_plugin("signPayload", payload)
+            .map_err(Into::into)
+    }
+    pub fn verify_signature(
+        &self,
+        payload: VerifySignatureRequest,
+    ) -> crate::Result<VerifySignatureResponse> {
+        self.0
+            .run_mobile_plugin("verifySignature", payload)
+            .map_err(Into::into)
+    }
 }

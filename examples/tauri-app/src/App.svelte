@@ -1,35 +1,37 @@
 <script>
-  import Greet from './lib/Greet.svelte'
+  // import Greet from './lib/Greet.svelte'
   import { generate, exists, getPublicKey } from 'tauri-plugin-crypto-api'
+  import Sign from './lib/Sign.svelte';
+  import Verify from './lib/Verify.svelte';
 
-	let response = ''
 
-	function updateResponse(returnValue) {
-		response += `[${new Date().toLocaleTimeString()}] ` + (typeof returnValue === 'string' ? returnValue : JSON.stringify(returnValue)) + '<br>'
-	}
+  let genRes = $state('')
 
 	// test functions 
   async function _generate() {
     generate("default").then((returnValue) => {
-      updateResponse(returnValue)
+      genRes = returnValue
     }).catch((error) => {
-      updateResponse(error)
+      genRes = error
     })
   }
-
+  
+  let existsRes = $state('')
   async function _exists() {
     exists("default").then((returnValue) => {
-      updateResponse(returnValue)
+      existsRes = `${returnValue}`
     }).catch((error) => {
-      updateResponse(error)
+      existsRes = error
     })
   }
 
+
+  let pubKey = $state('')
   async function _getPublicKey() {
     getPublicKey("default").then((returnValue) => {
-      updateResponse(returnValue)
+      pubKey = returnValue
     }).catch((error) => {
-      updateResponse(error)
+      pubKey = error
     })
   }
 </script>
@@ -39,14 +41,17 @@
   <button onclick={_generate}>
     Generate Key Pair
   </button>
+  <p>{genRes}</p>
   <button onclick={_exists}>
     Check Existence
   </button>
+  <p>{existsRes}</p>
   <button onclick={_getPublicKey}>
     Get Public Key
   </button>
+  <p class="long-text">{pubKey}</p>
 
-  <h1>Welcome to Tauri!</h1>
+  <!-- <h1>Welcome to Tauri!</h1>
 
   <div class="row">
     <a href="https://vite.dev" target="_blank">
@@ -62,16 +67,10 @@
 
   <p>
     Click on the Tauri, Vite, and Svelte logos to learn more.
-  </p>
+  </p> -->
 
-  <div class="row">
-    <Greet />
-  </div>
-
-  <div>
-    <!-- <button on:click="{_ping}">Ping</button> -->
-    <div>{@html response}</div>
-  </div>
+    <Sign />
+    <Verify />
 
 </main>
 

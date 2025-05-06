@@ -35,3 +35,30 @@ pub struct ExistsResponse {
 pub struct GetPublicKeyResponse {
     pub public_key: String,
 }
+
+#[derive(Debug, Clone, Default, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct SignPayloadRequest {
+    pub payload: String,
+    pub identifier: String,
+}
+
+#[derive(Debug, Clone, Default, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct SignPayloadResponse {
+    pub signature: String,
+}
+
+#[derive(Debug, Clone, Default, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct VerifySignatureRequest {
+    pub identifier: String,
+    pub payload: String,
+    pub signature: String,
+}
+
+#[derive(Debug, Clone, Default, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct VerifySignatureResponse {
+    pub valid: bool,
+}

@@ -21,41 +21,25 @@ let access = SecAccessControlCreateWithFlags(
 enum CryptoPluginError: Error {
     case keyExists
     case generationFailed
+    case badPayload
+    case badSignature
     case unknown
 }
 
 class IncludesIdentifier: Decodable {
     let identifier: String
-    
-    init(identifier: String) {
-        self.identifier = identifier
-    }
 }
 
-// enum PublicKeyExportFormat: String, Decodable {
-//     case hex
-//     case uint8array
-//     case base64
-// }
+class SignRequest: Decodable {
+    let identifier: String
+    let payload: String
+}
 
-// enum GetPublicKeyOutput {
-//     case hex(String)
-//     case uint8array([Int])
-//     case base64(String)
-    
-//     func toAny() -> Any {
-//         switch self {
-//         case .hex(let value), .base64(let value):
-//             return value
-//         case .uint8array(let array):
-//             return array
-//         }
-//     }
-// }
-
-//class GetPublicKeyArgs: IncludesIdentifier {
-//    var format: PublicKeyExportFormat = .base64
-//}
+class VerifySignatureRequest: Decodable {
+    let identifier: String
+    let payload: String
+    let signature: String
+}
 
 class CryptoPlugin: Plugin {
     private func buildKeyTag(from tag: String) -> Data? {
@@ -125,16 +109,47 @@ class CryptoPlugin: Plugin {
             throw CryptoPluginError.unknown
         }
         
-        // switch format {
-        // case .hex:
-        //     return .hex(publicKeyData.map { String(format: "%02x", $0) }.joined())
-        // case .uint8array:
-        //        return .uint8array(publicKeyData.map { Int($0) })
-        // case .base64:
-        //     return .base64(publicKeyData.base64EncodedString())
-        // }
-//         return publicKeyData.map { Int8($0) }
         return publicKeyData.base64EncodedString()
+    }
+    
+    private func _signPayload(tag: Data, payload: String) throws -> String {
+        guard let data = payload.data(using: .utf8) else {
+            throw CryptoPluginError.badPayload
+        }
+        
+        let privKeyRef = try getPrivateKeyReference(tag: tag)
+        var error: Unmanaged<CFError>?
+        guard let signatureData = SecKeyCreateSignature(
+            privKeyRef,
+            .ecdsaSignatureMessageX962SHA256,
+            data as CFData,
+            &error
+        ) as Data? else {
+            throw CryptoPluginError.unknown
+        }
+        return signatureData.base64EncodedString()
+    }
+    
+    private func _verifySignature(tag: Data, payload: String, signature: String) throws -> Bool {
+        guard let payloadData = payload.data(using: .utf8) else {
+            throw CryptoPluginError.badPayload
+        }
+        
+        guard let signatureData = Data(base64Encoded: signature) else {
+            throw CryptoPluginError.badSignature
+        }
+        
+        let privKeyRef = try getPrivateKeyReference(tag: tag)
+        var error: Unmanaged<CFError>?
+        let result = SecKeyVerifySignature(
+            privKeyRef,
+            .ecdsaSignatureMessageX962SHA256,
+            payloadData as CFData,
+            signatureData as CFData,
+            &error
+        )
+        return result
+        
     }
 
     @objc public func generate(_ invoke: Invoke) throws {
@@ -184,6 +199,44 @@ class CryptoPlugin: Plugin {
         }
         invoke.resolve([
             "publicKey": publicKeyData,
+        ])
+    }
+    
+    @objc public func signPayload(_ invoke: Invoke) throws {
+        let args = try invoke.parseArgs(SignRequest.self)
+        let tag = buildKeyTag(from: args.identifier)
+        if tag == nil {
+            invoke.reject("Invalid identifier provided")
+            return
+        }
+        let signature: String
+        do {
+            signature = try _signPayload(tag: tag!, payload: args.payload)
+        } catch {
+            invoke.reject("Couldn't create signature for the payload")
+            return
+        }
+        invoke.resolve([
+            "signature": signature
+        ])
+    }
+    
+    @objc public func verifySignature(_ invoke: Invoke) throws {
+        let args = try invoke.parseArgs(VerifySignatureRequest.self)
+        let tag = buildKeyTag(from: args.identifier)
+        if tag == nil {
+            invoke.reject("Invalid identifier provided")
+            return
+        }
+        let result: Bool
+        do {
+            result = try _verifySignature(tag: tag!, payload: args.payload, signature: args.signature)
+        } catch {
+            invoke.reject("Couldn't verify payload")
+            return
+        }
+        invoke.resolve([
+            "valid": result
         ])
     }
 }

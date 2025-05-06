@@ -35,3 +35,19 @@ pub(crate) async fn get_public_key<R: Runtime>(
 ) -> Result<GetPublicKeyResponse> {
     app.crypto().get_public_key(payload)
 }
+
+#[command]
+pub(crate) async fn sign_payload<R: Runtime>(
+    app: AppHandle<R>,
+    payload: SignPayloadRequest,
+) -> Result<SignPayloadResponse> {
+    app.crypto().sign_payload(payload)
+}
+
+#[command]
+pub(crate) async fn verify_signature<R: Runtime>(
+    app: AppHandle<R>,
+    payload: VerifySignatureRequest,
+) -> Result<VerifySignatureResponse> {
+    app.crypto().verify_signature(payload)
+}

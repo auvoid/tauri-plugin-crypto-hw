@@ -1,0 +1,11 @@
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-sign-payload"
+description = "Enables the sign_payload command without any pre-configured scope."
+commands.allow = ["sign_payload"]
+
+[[permission]]
+identifier = "deny-sign-payload"
+description = "Denies the sign_payload command without any pre-configured scope."
+commands.deny = ["sign_payload"]

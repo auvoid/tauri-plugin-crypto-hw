@@ -30,6 +30,11 @@
   transition: 0.75s;
 }
 
+.long-text {
+  width: 42ch;
+  word-wrap: break-word;
+}
+
 .logo.tauri:hover {
   filter: drop-shadow(0 0 2em #24c8db);
 }
@@ -37,6 +42,13 @@
 .row {
   display: flex;
   justify-content: center;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 a {

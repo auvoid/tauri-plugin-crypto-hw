@@ -343,10 +343,34 @@
           "markdownDescription": "Denies the ping command without any pre-configured scope."
         },
         {
-          "description": "This permission set configures which\ncrypto features are by default exposed.\n\n#### Granted Permissions\n\nIt allows access to all crypto commands.\n\n#### This default permission set includes:\n\n- `allow-generate`\n- `allow-exists`\n- `allow-get-public-key`",
+          "description": "Enables the sign_payload command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-sign-payload",
+          "markdownDescription": "Enables the sign_payload command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the sign_payload command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-sign-payload",
+          "markdownDescription": "Denies the sign_payload command without any pre-configured scope."
+        },
+        {
+          "description": "Enables the verify_signature command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-verify-signature",
+          "markdownDescription": "Enables the verify_signature command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the verify_signature command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-verify-signature",
+          "markdownDescription": "Denies the verify_signature command without any pre-configured scope."
+        },
+        {
+          "description": "This permission set configures which\ncrypto features are by default exposed.\n\n#### Granted Permissions\n\nIt allows access to all crypto commands.\n\n#### This default permission set includes:\n\n- `allow-generate`\n- `allow-exists`\n- `allow-get-public-key`\n- `allow-sign-payload`\n- `allow-verify-signature`",
           "type": "string",
           "const": "default",
-          "markdownDescription": "This permission set configures which\ncrypto features are by default exposed.\n\n#### Granted Permissions\n\nIt allows access to all crypto commands.\n\n#### This default permission set includes:\n\n- `allow-generate`\n- `allow-exists`\n- `allow-get-public-key`"
+          "markdownDescription": "This permission set configures which\ncrypto features are by default exposed.\n\n#### Granted Permissions\n\nIt allows access to all crypto commands.\n\n#### This default permission set includes:\n\n- `allow-generate`\n- `allow-exists`\n- `allow-get-public-key`\n- `allow-sign-payload`\n- `allow-verify-signature`"
         }
       ]
     }

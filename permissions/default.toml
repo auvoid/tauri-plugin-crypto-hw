@@ -8,4 +8,4 @@ crypto features are by default exposed.
 
 It allows access to all crypto commands.
 """
-permissions = ["allow-generate", "allow-exists", "allow-get-public-key"]
+permissions = ["allow-generate", "allow-exists", "allow-get-public-key", "allow-sign-payload", "allow-verify-signature"]

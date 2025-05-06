@@ -13,6 +13,8 @@ It allows access to all crypto commands.
 - `allow-generate`
 - `allow-exists`
 - `allow-get-public-key`
+- `allow-sign-payload`
+- `allow-verify-signature`
 
 ## Permission Table
 
@@ -123,6 +125,58 @@ Enables the ping command without any pre-configured scope.
 <td>
 
 Denies the ping command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`crypto:allow-sign-payload`
+
+</td>
+<td>
+
+Enables the sign_payload command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`crypto:deny-sign-payload`
+
+</td>
+<td>
+
+Denies the sign_payload command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`crypto:allow-verify-signature`
+
+</td>
+<td>
+
+Enables the verify_signature command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`crypto:deny-verify-signature`
+
+</td>
+<td>
+
+Denies the verify_signature command without any pre-configured scope.
 
 </td>
 </tr>

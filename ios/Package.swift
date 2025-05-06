@@ -17,6 +17,7 @@ let package = Package(
             targets: ["tauri-plugin-crypto"]),
     ],
     dependencies: [
+        .package(url: "https://github.com/attaswift/BigInt", from: "5.3.0"),
         .package(name: "Tauri", path: "../.tauri/tauri-api")
     ],
     targets: [
@@ -25,7 +26,8 @@ let package = Package(
         .target(
             name: "tauri-plugin-crypto",
             dependencies: [
-                .byName(name: "Tauri")
+                .byName(name: "Tauri"),
+                .byName(name: "BigInt")
             ],
             path: "Sources")
     ]

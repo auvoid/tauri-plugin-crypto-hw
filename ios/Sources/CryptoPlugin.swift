@@ -109,7 +109,7 @@ class CryptoPlugin: Plugin {
             throw CryptoPluginError.unknown
         }
         
-        return publicKeyData.base64EncodedString()
+        return dataToMultibaseHex(publicKeyData)
     }
     
     private func _signPayload(tag: Data, payload: String) throws -> String {
@@ -127,7 +127,8 @@ class CryptoPlugin: Plugin {
         ) as Data? else {
             throw CryptoPluginError.unknown
         }
-        return signatureData.base64EncodedString()
+        
+        return base58btcMultibaseEncode(signatureData)
     }
     
     private func _verifySignature(tag: Data, payload: String, signature: String) throws -> Bool {
@@ -135,14 +136,18 @@ class CryptoPlugin: Plugin {
             throw CryptoPluginError.badPayload
         }
         
-        guard let signatureData = Data(base64Encoded: signature) else {
+        guard let signatureData = base58btcMultibaseDecode(signature) else {
             throw CryptoPluginError.badSignature
         }
         
         let privKeyRef = try getPrivateKeyReference(tag: tag)
+        guard let publicKey = SecKeyCopyPublicKey(privKeyRef) else {
+            throw CryptoPluginError.unknown
+        }
+        
         var error: Unmanaged<CFError>?
         let result = SecKeyVerifySignature(
-            privKeyRef,
+            publicKey,
             .ecdsaSignatureMessageX962SHA256,
             payloadData as CFData,
             signatureData as CFData,

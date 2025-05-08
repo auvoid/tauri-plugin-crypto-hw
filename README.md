@@ -16,7 +16,7 @@ This project is a Tauri plugin which allows for hardware KeyStore (Secure Enclav
 
 ```ts
 import { generate } from "tauri-plugin-crypt-api";
-async function _generate() {
+async function generate() {
   generate("default")
     .then((returnValue) => {
       genRes = returnValue;
@@ -29,7 +29,7 @@ async function _generate() {
 
 ```ts
 import { exists } from "tauri-plugin-crypt-api";
-async function _exists() {
+async function exists() {
   exists("default")
     .then((returnValue) => {
       genRes = returnValue;
@@ -42,7 +42,7 @@ async function _exists() {
 
 ```ts
 import { getPublicKey } from "tauri-plugin-crypt-api";
-async function _getPublicKey() {
+async function getPublicKey() {
   getPublicKey("default")
     .then((returnValue) => {
       genRes = returnValue;
@@ -55,7 +55,7 @@ async function _getPublicKey() {
 
 ```ts
 import { signPayload } from "tauri-plugin-crypt-api";
-async function _signPayload() {
+async function signPayload() {
   signPayload("default")
     .then((returnValue) => {
       genRes = returnValue;
@@ -68,7 +68,7 @@ async function _signPayload() {
 
 ```ts
 import { verifySignature } from "tauri-plugin-crypt-api";
-async function _verifySignature() {
+async function verifySignature() {
   verifySignature("default")
     .then((returnValue) => {
       genRes = returnValue;

@@ -49,7 +49,7 @@ class CryptoPlugin(private val activity: Activity): Plugin(activity) {
     private fun generateKeyPair(alias: String) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P ||
             !activity.packageManager.hasSystemFeature(PackageManager.FEATURE_STRONGBOX_KEYSTORE)) {
-            throw Exception("StrongBox requires Android P or above")
+            throw Exception("StrongBox is not available on this device.")
         }
         val ks = KeyStore.getInstance("AndroidKeyStore").apply { load(null) }
         if (ks.containsAlias(alias)) throw Exception("Key already exists")

@@ -33,7 +33,13 @@
   "scripts": {
     "build": "rollup -c",
     "prepublishOnly": "pnpm build",
-    "pretest": "pnpm build"
+    "pretest": "pnpm build",
+    "lint": "npx @biomejs/biome lint --write ./guest-js",
+    "check-lint": "npx @biomejs/biome lint ./guest-js",
+    "format": "npx @biomejs/biome format --write ./guest-js",
+    "check-format": "npx @biomejs/biome format ./guest-js",
+    "check": "npx @biomejs/biome check --write ./guest-js",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "@tauri-apps/api": ">=2.0.0-beta.6"

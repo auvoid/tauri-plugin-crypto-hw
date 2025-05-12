@@ -15,6 +15,7 @@ _(Must be approved by at least two reviewers before merging the release PR)_
 - [ ] Feature branches merged into main/stable branch
 - [ ] All merge conflicts resolved
 - [ ] Version number updated in `package.json`
+- [ ] Version number updated in `Cargo.toml`
 - [ ] Build completes successfully without errors
 - [ ] Code linting & formatting checks passed
 

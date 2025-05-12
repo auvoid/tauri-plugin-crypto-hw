@@ -40,5 +40,3 @@ _(Must be approved by at least two reviewers before merging the release PR)_
 - [ ] Can **subscribe to a plan** successfully
 - [ ] Can **issue a credential**
 - [ ] Can **receive a credential in an identity wallet**
-
-**After all items are checked, this issue should be closed automatically when the release PR is merged.** 🚀

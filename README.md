@@ -15,7 +15,7 @@ This project is a Tauri plugin which allows for hardware KeyStore (Secure Enclav
 ### Available Commands
 
 ```ts
-import { generate } from "tauri-plugin-crypt-api";
+import { generate } from "@auvo/tauri-plugin-crypto-hw-api";
 async function generate() {
   generate("default")
     .then((returnValue) => {
@@ -28,7 +28,7 @@ async function generate() {
 ```
 
 ```ts
-import { exists } from "tauri-plugin-crypt-api";
+import { exists } from "@auvo/tauri-plugin-crypto-hw-api";
 async function exists() {
   exists("default")
     .then((returnValue) => {
@@ -41,7 +41,7 @@ async function exists() {
 ```
 
 ```ts
-import { getPublicKey } from "tauri-plugin-crypt-api";
+import { getPublicKey } from "@auvo/tauri-plugin-crypto-hw-api";
 async function getPublicKey() {
   getPublicKey("default")
     .then((returnValue) => {
@@ -54,7 +54,7 @@ async function getPublicKey() {
 ```
 
 ```ts
-import { signPayload } from "tauri-plugin-crypt-api";
+import { signPayload } from "@auvo/tauri-plugin-crypto-hw-api";
 async function signPayload() {
   signPayload("default")
     .then((returnValue) => {
@@ -67,7 +67,7 @@ async function signPayload() {
 ```
 
 ```ts
-import { verifySignature } from "tauri-plugin-crypt-api";
+import { verifySignature } from "@auvo/tauri-plugin-crypto-hw-api";
 async function verifySignature() {
   verifySignature("default")
     .then((returnValue) => {
@@ -178,32 +178,6 @@ Enables the get_public_key command without any pre-configured scope.
 <td>
 
 Denies the get_public_key command without any pre-configured scope.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-`crypto:allow-ping`
-
-</td>
-<td>
-
-Enables the ping command without any pre-configured scope.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-`crypto:deny-ping`
-
-</td>
-<td>
-
-Denies the ping command without any pre-configured scope.
 
 </td>
 </tr>

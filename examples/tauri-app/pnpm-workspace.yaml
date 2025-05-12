@@ -1,2 +1,2 @@
 overrides:
-  tauri-plugin-crypto-api: link:../..
+  tauri-plugin-crypto-hw-api: link:../..

@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^2.0.0",
-    "tauri-plugin-crypto-api": "link:../.."
+    "tauri-plugin-crypto-hw-api": "link:../.."
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",

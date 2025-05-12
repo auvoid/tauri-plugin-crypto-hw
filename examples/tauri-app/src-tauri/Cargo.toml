@@ -19,5 +19,5 @@ tauri-build = { version = "2.2.0", default-features = false , features = [] }
 
 [dependencies]
 tauri = { version = "2.5.0", features = [] }
-tauri-plugin-crypto = { path = "../../../" }
+tauri-plugin-crypto-hw = { path = "../../../" }
 

@@ -34,7 +34,7 @@ impl<R: Runtime, T: Manager<R>> crate::CryptoExt<R> for T {
 
 /// Initializes the plugin.
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
-    Builder::new("crypto")
+    Builder::new("crypto-hw")
         .invoke_handler(tauri::generate_handler![
             commands::generate,
             commands::exists,

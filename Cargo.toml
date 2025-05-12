@@ -1,12 +1,12 @@
 [package]
-name = "tauri-plugin-crypto"
+name = "tauri-plugin-crypto-hw"
 version = "0.1.0"
-authors = [ "You" ]
+authors = [ "SoSweetHam <soham@auvo.io>" ]
 description = ""
 edition = "2021"
 rust-version = "1.77.2"
 exclude = ["/examples", "/dist-js", "/guest-js", "/node_modules"]
-links = "tauri-plugin-crypto"
+links = "tauri-plugin-crypto-hw"
 
 [dependencies]
 tauri = { version = "2.5.0" }

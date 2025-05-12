@@ -1,5 +1,5 @@
 <script>
-    import { verifySignature } from "tauri-plugin-crypto-api";
+    import { verifySignature } from "tauri-plugin-crypto-hw-api";
 
     let payload = $state("");
     let signature = $state("");

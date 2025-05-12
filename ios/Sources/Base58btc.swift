@@ -1,6 +1,6 @@
 //
 //  Utils.swift
-//  tauri-plugin-crypto
+//  tauri-plugin-crypto-hw
 //
 //  Created by SoSweetHam on 06/05/25.
 //

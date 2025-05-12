@@ -1,5 +1,5 @@
 {
-  "name": "@auvo/tauri-plugin-crypto-api",
+  "name": "@auvo/tauri-plugin-crypto-hw-api",
   "version": "0.1.0",
   "author": "SoSweetHam <soham@auvo.io>",
   "description": "Android/iOS StrongBox/Secure Enclave Bindings+Wrapper for Tauri.",
@@ -19,7 +19,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/auvoid/tauri-plugin-crypto"
+    "url": "git+https://github.com/auvoid/tauri-plugin-crypto-hw"
   },
   "keywords": [
     "tauri",

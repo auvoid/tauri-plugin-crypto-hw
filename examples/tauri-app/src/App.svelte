@@ -1,6 +1,6 @@
 <script>
   // import Greet from './lib/Greet.svelte'
-  import { generate, exists, getPublicKey } from 'tauri-plugin-crypto-api'
+  import { generate, exists, getPublicKey } from 'tauri-plugin-crypto-hw-api'
   import Sign from './lib/Sign.svelte';
   import Verify from './lib/Verify.svelte';
 

@@ -28,7 +28,7 @@ It allows access to all crypto commands.
 <tr>
 <td>
 
-`crypto:allow-exists`
+`crypto-hw:allow-exists`
 
 </td>
 <td>
@@ -41,7 +41,7 @@ Enables the exists command without any pre-configured scope.
 <tr>
 <td>
 
-`crypto:deny-exists`
+`crypto-hw:deny-exists`
 
 </td>
 <td>
@@ -54,7 +54,7 @@ Denies the exists command without any pre-configured scope.
 <tr>
 <td>
 
-`crypto:allow-generate`
+`crypto-hw:allow-generate`
 
 </td>
 <td>
@@ -67,7 +67,7 @@ Enables the generate command without any pre-configured scope.
 <tr>
 <td>
 
-`crypto:deny-generate`
+`crypto-hw:deny-generate`
 
 </td>
 <td>
@@ -80,7 +80,7 @@ Denies the generate command without any pre-configured scope.
 <tr>
 <td>
 
-`crypto:allow-get-public-key`
+`crypto-hw:allow-get-public-key`
 
 </td>
 <td>
@@ -93,7 +93,7 @@ Enables the get_public_key command without any pre-configured scope.
 <tr>
 <td>
 
-`crypto:deny-get-public-key`
+`crypto-hw:deny-get-public-key`
 
 </td>
 <td>
@@ -106,7 +106,7 @@ Denies the get_public_key command without any pre-configured scope.
 <tr>
 <td>
 
-`crypto:allow-ping`
+`crypto-hw:allow-ping`
 
 </td>
 <td>
@@ -119,7 +119,7 @@ Enables the ping command without any pre-configured scope.
 <tr>
 <td>
 
-`crypto:deny-ping`
+`crypto-hw:deny-ping`
 
 </td>
 <td>
@@ -132,7 +132,7 @@ Denies the ping command without any pre-configured scope.
 <tr>
 <td>
 
-`crypto:allow-sign-payload`
+`crypto-hw:allow-sign-payload`
 
 </td>
 <td>
@@ -145,7 +145,7 @@ Enables the sign_payload command without any pre-configured scope.
 <tr>
 <td>
 
-`crypto:deny-sign-payload`
+`crypto-hw:deny-sign-payload`
 
 </td>
 <td>
@@ -158,7 +158,7 @@ Denies the sign_payload command without any pre-configured scope.
 <tr>
 <td>
 
-`crypto:allow-verify-signature`
+`crypto-hw:allow-verify-signature`
 
 </td>
 <td>
@@ -171,7 +171,7 @@ Enables the verify_signature command without any pre-configured scope.
 <tr>
 <td>
 
-`crypto:deny-verify-signature`
+`crypto-hw:deny-verify-signature`
 
 </td>
 <td>

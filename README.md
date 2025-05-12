@@ -86,7 +86,7 @@ crypto features are by default exposed.
 
 ##### Granted Permissions
 
-It allows access to all crypto commands.
+**crypto-hw:default**: It allows access to all crypto commands.
 
 ##### This default permission set includes the following:
 

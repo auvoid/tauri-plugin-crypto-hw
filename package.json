@@ -25,10 +25,13 @@
     "tauri",
     "plugin",
     "crypto",
+    "tpm",
+    "hsm",
     "secure enclave",
     "strongbox",
     "android",
-    "ios"
+    "ios",
+    "hardware"
   ],
   "scripts": {
     "build": "rollup -c",

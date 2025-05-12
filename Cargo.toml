@@ -2,7 +2,12 @@
 name = "tauri-plugin-crypto-hw"
 version = "0.1.0"
 authors = [ "SoSweetHam <soham@auvo.io>" ]
-description = ""
+license = "MIT"
+description = "Android/iOS StrongBox/Secure Enclave Bindings+Wrapper for Tauri"
+homepage = "https://auvo.io"
+repository = "https://github.com/auvoid/tauri-plugin-crypto-hw"
+readme = "README.md"
+keywords = ["tauri", "plugin", "crypto", "tpm", "hsm", "hardware", "strongbox", "secure enclave", "android", "ios"]
 edition = "2021"
 rust-version = "1.77.2"
 exclude = ["/examples", "/dist-js", "/guest-js", "/node_modules"]

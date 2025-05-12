@@ -4,19 +4,16 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  tauri-plugin-crypto-api: link:../..
-
 importers:
 
   .:
     dependencies:
+      '@auvo/tauri-plugin-crypto-hw-api':
+        specifier: link:../..
+        version: link:../..
       '@tauri-apps/api':
         specifier: ^2.0.0
         version: 2.5.0
-      tauri-plugin-crypto-api:
-        specifier: link:../..
-        version: link:../..
     devDependencies:
       '@biomejs/biome':
         specifier: ^1.9.4

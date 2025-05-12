@@ -8,7 +8,7 @@ import { invoke } from "@tauri-apps/api/core";
  * Generates a new keypair with the given identifier. If a keypair with the same identifier already exists, operation will fail, promise will reject but a message string will be returned in all cases.
  * @example
  * ```ts
- * import { generate } from 'tauri-plugin-crypto-hw-api'
+ * import { generate } from '@auvo/tauri-plugin-crypto-hw-api'
  * const message = await generate('my-keypair-id');
  * console.log(message);
  * ```
@@ -29,7 +29,7 @@ export async function generate(identifier: string): Promise<string> {
  * Checks if a keypair with the given identifier exists. If it does, the promise will resolve to true, otherwise it will resolve to false.
  * @example
  * ```ts
- * import { exists } from 'tauri-plugin-crypto-hw-api'
+ * import { exists } from '@auvo/tauri-plugin-crypto-hw-api'
  * const keypairExists = await exists('my-keypair-id');
  * console.log(keypairExists); // true or false
  * ```
@@ -50,7 +50,7 @@ export async function exists(identifier: string): Promise<boolean> {
  * Retrieves a string based multibase hex representation of the public key associated with the given identifier. If the keypair does not exist, the promise will reject.
  * @example
  * ```ts
- * import { getPublicKey } from 'tauri-plugin-crypto-hw-api'
+ * import { getPublicKey } from '@auvo/tauri-plugin-crypto-hw-api'
  * const publicKey = await getPublicKey('my-keypair-id');
  * console.log(publicKey); // "0x1234567890abcdef..."
  * ```
@@ -72,7 +72,7 @@ export async function getPublicKey(identifier: string): Promise<string> {
  * Signs the given payload with the private key associated with the given identifier. The signature is returned as a base58btc format string. If the keypair does not exist, the promise will reject.
  * @example
  * ```ts
- * import { signPayload } from 'tauri-plugin-crypto-hw-api'
+ * import { signPayload } from '@auvo/tauri-plugin-crypto-hw-api'
  * const signature = await signPayload('my-keypair-id', 'Hello, world!');
  * console.log(signature, payload); // "zQ1234567890abcdef..."
  * ```
@@ -99,7 +99,7 @@ export async function signPayload(
  * Verifies the given signature against the payload using the public key associated with the given identifier. The signature is expected to be in base58btc format. If the keypair does not exist, the promise will reject.
  * @example
  * ```ts
- * import { verifySignature } from 'tauri-plugin-crypto-hw-api'
+ * import { verifySignature } from '@auvo/tauri-plugin-crypto-hw-api'
  * const isValid = await verifySignature('my-keypair-id', 'Hello, world!', 'zQ1234567890abcdef...');
  * console.log(isValid); // true or false
  * ```

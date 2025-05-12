@@ -56,11 +56,14 @@ export async function exists(identifier: string): Promise<boolean> {
  * ```
  */
 export async function getPublicKey(identifier: string): Promise<string> {
-	return await invoke<{ publicKey: string }>("plugin:crypto-hw|get_public_key", {
-		payload: {
-			identifier,
+	return await invoke<{ publicKey: string }>(
+		"plugin:crypto-hw|get_public_key",
+		{
+			payload: {
+				identifier,
+			},
 		},
-	}).then((r) => r.publicKey);
+	).then((r) => r.publicKey);
 }
 
 /**
